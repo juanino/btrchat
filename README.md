@@ -10,3 +10,33 @@ this will provide secure transport outside of SSL by using python's cryptography
 the fernet high level access.
 
 I also needed a project to experiment with the amazon SQS service and learn some more python.
+
+# install
+* git clone this code
+* install python 3 from https://www.continuum.io/downloads
+* conda or pip install cryptography, boto3, awscli (or aws windows aws cli install)
+* setup iam policy and keys for sqs permission
+* configure aws with 'aws configure' and use keys with SQS permission
+* setup an aws queue for tx and rx (transmit and receive)
+* get your buddy to setup a copy of the code and python3
+* modify the txqueue and rxqueue variables. 
+* flip them around for your buddy or use /swap after statup
+* pick a 4 digit pin on startup shared via another secure means
+* optionally change the key variable to some other key or use key = Fernet.generate_key() 
+
+# references
+* https://cryptography.io/en/latest/fernet/
+* http://boto3.readthedocs.io/en/latest/guide/sqs.html
+
+# bugs
+* /check only pulls one message off the queue, you need to run it multiple times to get more messages (feel free to fix it)
+* all kinds of bad coding practices, failure to check the pin is the right length
+* control-d causes it to crash
+* doesn't work with python2
+
+# aws permissions
+You will need the following access:
+    "sqs:DeleteMessage",
+    "sqs:GetQueueUrl",
+    "sqs:ReceiveMessage",
+    "sqs:SendMessage"
