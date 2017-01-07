@@ -53,3 +53,4 @@ You will need the following access:
     "sqs:GetQueueUrl",
     "sqs:ReceiveMessage",
     "sqs:SendMessage"
+
