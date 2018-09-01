@@ -20,11 +20,11 @@ I also needed a project to experiment with the amazon SQS service and learn some
 * git clone this code
 * install python 3 from https://www.continuum.io/downloads
 * conda or pip install cryptography, boto3, awscli (or aws windows aws cli install)
-* setup iam policy and keys for sqs permission
+* setup iam policy and keys for sqs permission (see sample_iam.json)
 * configure aws with 'aws configure' and use keys with SQS permission
-* setup an aws queue for tx and rx (transmit and receive)
+* setup an aws queue for tx and rx (transmit and receive, you must check "Content-Based Deduplication")
 * get your buddy to setup a copy of the code and python3
-* modify the txqueue and rxqueue variables. 
+* modify the txqueue and rxqueue variables to match your queue names
 * flip them around for your buddy or use /swap after statup
 * pick a 4 digit pin on startup shared via another secure means
 * optionally change the key variable to some other key or use key = Fernet.generate_key() 
