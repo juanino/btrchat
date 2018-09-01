@@ -12,8 +12,8 @@ f = Fernet(key)
 sqs = boto3.resource('sqs')
 
 # Get the queue. This returns an SQS.Queue instance
-txqueue = sqs.get_queue_by_name(QueueName='fromjerry')
-rxqueue = sqs.get_queue_by_name(QueueName='tojerry')
+txqueue = sqs.get_queue_by_name(QueueName='fromjerry.fifo')
+rxqueue = sqs.get_queue_by_name(QueueName='tojerry.fifo')
 
 # You can now access identifiers and attributes
 def print_rxtx():
@@ -51,5 +51,6 @@ while True:
             cipherText = cipherText.decode('utf-8')
             # cipherText = str(cipherText)
             print("tx encrypted>", cipherText)
-            response = txqueue.send_message(MessageBody=cipherText)
+            response = txqueue.send_message(MessageBody=cipherText,MessageGroupId="btrchat")
+
 
