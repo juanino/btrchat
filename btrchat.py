@@ -1,9 +1,19 @@
+#!/usr/bin/env python3
 import boto3
 import time
 from cryptography.fernet import Fernet
 
 # setup encryption
-pin = input('enter 4 digit pin for encryption key: ')
+pin = "invalid"
+while len(pin) != 4:
+    pin = input('enter 4 digit pin for encryption key: ')
+    if len(pin) < 4:
+        print("too short, retry")
+    elif len(pin) > 4:
+        print("too long, 4 chars please or digits")
+    else:
+        print("pin good, proceeding")
+
 key = pin + "Hvc6L5DAqES1234DvoM8bMiIduMF93TBcpYf-vc="
 print("key is", key)
 f = Fernet(key)

@@ -18,8 +18,8 @@ I also needed a project to experiment with the amazon SQS service and learn some
 
 # install
 * git clone this code
-* install python 3 from https://www.continuum.io/downloads
-* conda or pip install cryptography, boto3, awscli (or aws windows aws cli install)
+* install python 3 from https://www.continuum.io/downloads (windows)
+* conda or pip install cryptography, boto3, awscli (or aws windows aws cli install) or just use pip3 install -r requirements.txt
 * setup iam policy and keys for sqs permission (see sample_iam.json)
 * configure aws with 'aws configure' and use keys with SQS permission
 * setup an aws queue for tx and rx (transmit and receive, you must check "Content-Based Deduplication")
