@@ -2,7 +2,7 @@
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "VisualEditor0",
+            "Sid": "btrchat0",
             "Effect": "Allow",
             "Action": [
                 "sqs:DeleteMessage",
@@ -11,18 +11,18 @@
                 "sqs:SendMessage"
             ],
             "Resource": [
-                "arn:aws:sqs:*:*:tobob",
-                "arn:aws:sqs:*:*:frombob"
+                "arn:aws:sqs:*:*:tobob.fifo",
+                "arn:aws:sqs:*:*:frombob.fifo"
             ]
         },
         {
-            "Sid": "VisualEditor1",
+            "Sid": "btrchat1",
             "Effect": "Allow",
             "Action": "sqs:GetQueueUrl",
             "Resource": "arn:aws:sqs:*:*:*"
         },
         {
-            "Sid": "VisualEditor2",
+            "Sid": "btrchat2",
             "Effect": "Allow",
             "Action": "sqs:ListQueues",
             "Resource": "*"

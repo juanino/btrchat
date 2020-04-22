@@ -18,8 +18,8 @@ I also needed a project to experiment with the amazon SQS service and learn some
 
 # install
 * git clone this code
-* install python 3 from https://www.continuum.io/downloads
-* conda or pip install cryptography, boto3, awscli (or aws windows aws cli install)
+* install python 3 from https://www.continuum.io/downloads (windows) or brew install python3 (mac)
+* pip3 install -r requirements.txt
 * setup iam policy and keys for sqs permission (see sample_iam.json)
 * configure aws with 'aws configure' and use keys with SQS permission
 * setup an aws queue for tx and rx (transmit and receive, you must check "Content-Based Deduplication")
@@ -43,7 +43,6 @@ I also needed a project to experiment with the amazon SQS service and learn some
 
 # bugs
 * /check only pulls one message off the queue, you need to run it multiple times to get more messages (feel free to fix it)
-* all kinds of bad coding practices, failure to check the pin is the right length
 * control-d causes it to crash
 * doesn't work with python2
 
