@@ -43,7 +43,6 @@ I also needed a project to experiment with the amazon SQS service and learn some
 
 # bugs
 * /check only pulls one message off the queue, you need to run it multiple times to get more messages (feel free to fix it)
-* all kinds of bad coding practices, failure to check the pin is the right length
 * control-d causes it to crash
 * doesn't work with python2
 
