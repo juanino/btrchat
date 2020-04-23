@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import boto3
 import time
+import threading
 from cryptography.fernet import Fernet
 
 # setup encryption
@@ -30,7 +31,27 @@ def print_rxtx():
     print("using " + txqueue.url + " for transmit")
     print("using " + rxqueue.url + " for receive")
 
+stop_threads = False
+def check_messages():
+    while True:
+        if stop_threads:
+            print("killing check thread")
+            break
+        print("Checking for messages")
+        for message in rxqueue.receive_messages(WaitTimeSeconds=20):
+            print('rx: ' + message.body)
+            token = message.body
+            token = token.encode('utf-8')
+            plaintext = f.decrypt(token)
+            print('decrypted > ', plaintext)
+            message.delete()
+        print("check loop complete")
+
 print_rxtx()
+print("Starting thread to check messages")
+t = threading.Thread(target=check_messages)
+t.start()
+
 
 # Enter main loop
 while True:
@@ -46,6 +67,9 @@ while True:
                 print('decrypted > ', plaintext)
                 message.delete()
         elif chatmsg == '/exit' or chatmsg == '/quit':
+            print("waiting for thread shutdown")
+            stop_threads = True
+            t.join()
             exit()
         elif chatmsg == '/swap':
             print("swaping tx/rx")
