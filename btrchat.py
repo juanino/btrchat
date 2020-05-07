@@ -15,6 +15,9 @@ while len(pin) != 4:
     else:
         print("pin good, proceeding")
 
+# note: you should change this as the encryption
+# relies on this secret and adding a 4 digits to the end, which we'll 
+# call the pin
 key = pin + "Hvc6L5DAqES1234DvoM8bMiIduMF93TBcpYf-vc="
 print("key is", key)
 f = Fernet(key)
@@ -23,6 +26,9 @@ f = Fernet(key)
 sqs = boto3.resource('sqs')
 
 # Get the queue. This returns an SQS.Queue instance
+# note change this to whatever queue you provisioned for this job.
+# make sure it's a fifo queue and the AWS access key you and your friend use
+# have access to it
 txqueue = sqs.get_queue_by_name(QueueName='fromjerry.fifo')
 rxqueue = sqs.get_queue_by_name(QueueName='tojerry.fifo')
 
