@@ -42,7 +42,6 @@ I also needed a project to experiment with the amazon SQS service and learn some
 * http://boto3.readthedocs.io/en/latest/guide/sqs.html
 
 # bugs
-* /check only pulls one message off the queue, you need to run it multiple times to get more messages (feel free to fix it)
 * control-d causes it to crash
 * doesn't work with python2
 
