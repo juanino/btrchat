@@ -2,5 +2,5 @@
 
 debug=0
 
-rxqueue = 'XXXXXXXXXXX.fifo'
-txqueue = 'XXXXXXXXXXX.fifo'
+rxqueue = 'bobtoalice.fifo'
+txqueue = 'alicetobob.fifo'

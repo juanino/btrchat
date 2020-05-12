@@ -18,6 +18,7 @@ I also needed a project to experiment with the amazon SQS service and learn some
 
 # Install
 * git clone this code
+* copy config_sample.py to config.py and adjust queue names
 * install python 3 from https://www.continuum.io/downloads (windows) or brew install python3 (mac)
 * pip3 install -r requirements.txt
 * setup IAM policy and keys for sqs permission (see sample_iam.json)
