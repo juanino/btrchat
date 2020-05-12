@@ -3,7 +3,14 @@ import boto3
 import time
 import threading
 from cryptography.fernet import Fernet
-import config as cfg
+import sys
+
+try:
+    import config as cfg
+except:
+    print("could not find config file.")
+    print("copy config_sample.py to config.py and adjust")
+    sys.exit(1)
 
 # setup encryption
 pin = "invalid"
