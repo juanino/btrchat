@@ -90,3 +90,6 @@ ENV/
 
 # pycharm files
 .idea
+
+# config file for btrchat
+config.py

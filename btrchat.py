@@ -3,6 +3,7 @@ import boto3
 import time
 import threading
 from cryptography.fernet import Fernet
+import config as cfg
 
 # setup encryption
 pin = "invalid"
@@ -29,8 +30,10 @@ sqs = boto3.resource('sqs')
 # note change this to whatever queue you provisioned for this job.
 # make sure it's a fifo queue and the AWS access key you and your friend use
 # have access to it
-txqueue = sqs.get_queue_by_name(QueueName='fromjerry.fifo')
-rxqueue = sqs.get_queue_by_name(QueueName='tojerry.fifo')
+#txqueue = sqs.get_queue_by_name(QueueName='jerrytoadam.fifo')
+txqueue = sqs.get_queue_by_name(QueueName=cfg.txqueue)
+#rxqueue = sqs.get_queue_by_name(QueueName='adamtojerry.fifo')
+rxqueue = sqs.get_queue_by_name(QueueName=cfg.rxqueue)
 
 # You can now access identifiers and attributes
 def print_rxtx():
@@ -65,7 +68,8 @@ while True:
     if chatmsg:
         if chatmsg == '/check':
             for message in rxqueue.receive_messages(WaitTimeSeconds=5):
-                print('rx: ' + message.body)
+                if cfg.debug > 0:
+                    print('rx: ' + message.body)
 
                 token = message.body
                 token = token.encode('utf-8')
@@ -90,7 +94,8 @@ while True:
             cipherText = f.encrypt(token)
             cipherText = cipherText.decode('utf-8')
             # cipherText = str(cipherText)
-            print("tx encrypted>", cipherText)
+            if cfg.debug > 0:
+                print("tx encrypted>", cipherText)
             response = txqueue.send_message(MessageBody=cipherText,MessageGroupId="btrchat")
 
 
