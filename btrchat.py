@@ -56,11 +56,12 @@ def check_messages():
         if cfg.debug > 0:
             print("Checking for messages")
         for message in rxqueue.receive_messages(WaitTimeSeconds=20):
-            print('rx: ' + message.body)
+            if cfg.debug > 0:
+                print('rx: ' + message.body)
             token = message.body
             token = token.encode('utf-8')
             plaintext = f.decrypt(token)
-            print('decrypted > ', plaintext)
+            print('\ndecrypted > ', plaintext)
             message.delete()
         if cfg.debug > 0:
             print("check loop complete")
@@ -83,7 +84,7 @@ while True:
                 token = message.body
                 token = token.encode('utf-8')
                 plaintext = f.decrypt(token)
-                print('decrypted > ', plaintext)
+                print('\decrypted > ', plaintext)
                 message.delete()
         elif chatmsg == '/exit' or chatmsg == '/quit':
             print("waiting for thread shutdown")
