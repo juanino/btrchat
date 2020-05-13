@@ -98,6 +98,12 @@ while True:
             txqueue = currentrx
             rxqueue = currenttx
             print_rxtx()
+        elif chatmsg == '/debug':
+            print("enabling debug, use /nodebug to disable")
+            cfg.debug = 1
+        elif chatmsg == '/nodebug':
+            print("disabling debug")
+            cfg.debug = 0
         else:
             print("tx>", chatmsg)
             token = chatmsg.encode('utf-8')
