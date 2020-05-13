@@ -53,7 +53,8 @@ def check_messages():
         if stop_threads:
             print("killing check thread")
             break
-        print("Checking for messages")
+        if cfg.debug > 0:
+            print("Checking for messages")
         for message in rxqueue.receive_messages(WaitTimeSeconds=20):
             print('rx: ' + message.body)
             token = message.body
@@ -61,7 +62,8 @@ def check_messages():
             plaintext = f.decrypt(token)
             print('decrypted > ', plaintext)
             message.delete()
-        print("check loop complete")
+        if cfg.debug > 0:
+            print("check loop complete")
 
 print_rxtx()
 print("Starting thread to check messages")
